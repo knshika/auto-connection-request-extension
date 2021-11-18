@@ -1,0 +1,12 @@
+{
+  "name": "Auto-Connecting",
+  "description": "sends automatic connection request in linkedin which any specific criteria",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "permissions": ["tabs", "scripting"],
+  "host_permissions": ["https://www.linkedin.com/", "https://inkedin.com/"],
+  "action": {
+    "default_title": "send connection request",
+    "default_popup": "popup.html"
+  }
+}
