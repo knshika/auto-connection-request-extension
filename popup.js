@@ -2,33 +2,39 @@
 
 const clickConnectBtns = async () => {
   let buttons = document.querySelectorAll("[aria-label^='Invite']");
-
+  let count = 0;
   const wait = async (ms) => {
     return new Promise((resolve) => {
       setTimeout(resolve, ms);
     });
   };
 
+  function getRandomTime(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+
   for (const button of buttons) {
     button.click();
-    console.log("clicked");
 
-    await wait(2000);
+    await wait(getRandomTime(2000, 3000));
 
     let send = document.querySelector("[aria-label^='Send']");
-    if (send) send.click();
-    console.log("send");
-
-    await wait(4000);
+    if (send) {
+      send.click();
+      chrome.runtime.sendMessage(++count);
+    }
+    await wait(getRandomTime(2000, 3000));
   }
 };
 
 const injectTheScript = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tab) => {
-    console.log(tab);
     chrome.scripting.executeScript({
       target: { tabId: tab[0].id },
       func: clickConnectBtns,
+    });
+    chrome.runtime.onMessage.addListener(function (response) {
+      document.querySelector("#request-status").innerText = response;
     });
   });
 };
@@ -36,3 +42,7 @@ const injectTheScript = () => {
 document
   .querySelector("#send-request")
   .addEventListener("click", injectTheScript);
+
+// start and stop sending request using toggle
+// if more css needed
+//document in github
