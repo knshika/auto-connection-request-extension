@@ -1,5 +1,6 @@
 //https://www.linkedin.com/search/results/people/?keywords=sde%20amazon&origin=SWITCH_SEARCH_VERTICAL&sid=*6-
 
+//conent-script
 const clickConnectBtns = async () => {
   let buttons = document.querySelectorAll("[aria-label^='Invite']");
   let count = 0;
@@ -27,6 +28,7 @@ const clickConnectBtns = async () => {
   }
 };
 
+//background-script
 const injectTheScript = () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tab) => {
     chrome.scripting.executeScript({
@@ -42,7 +44,3 @@ const injectTheScript = () => {
 document
   .querySelector("#send-request")
   .addEventListener("click", injectTheScript);
-
-// start and stop sending request using toggle
-// if more css needed
-//document in github
