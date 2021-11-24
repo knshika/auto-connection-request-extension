@@ -22,6 +22,21 @@ h3 {
   color: aliceblue;
 }
 
+.progress-container {
+  height: 0.3rem;
+  width: 7rem;
+  border-radius: 0.4rem;
+  background: rgb(65, 64, 64);
+}
+
+.progress-container .progress {
+  height: 100%;
+  width: 0;
+  border-radius: 0.3rem;
+  background: rgba(240, 248, 255, 0.877);
+  transition: width 0.4s ease;
+}
+
 .status {
   font-size: 2.5rem;
   text-align: center;
@@ -38,4 +53,10 @@ button {
   font-size: 1rem;
   padding: 5px 5px;
   cursor: pointer;
+  margin-bottom: 10px;
+}
+
+button[disabled] {
+  opacity: 50%;
+  cursor: default;
 }
